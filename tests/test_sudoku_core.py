@@ -4,15 +4,16 @@ Deliberately NOT calling the LLM here: unit tests should be fast,
 free, and deterministic. Agent behavior gets a separate integration
 test (test_graph.py) that's skipped in CI unless an API key is present.
 """
-import sys
 import os
+import sys
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from sudoku_core import (
+    find_conflicts,
     generate_full_solution,
     generate_puzzle,
     is_valid_solution,
-    find_conflicts,
 )
 
 

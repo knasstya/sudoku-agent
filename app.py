@@ -4,8 +4,9 @@ without writing HTML/JS — standard choice for ML/AI portfolio demos
 because it's fast to build and free to host (Streamlit Community Cloud).
 """
 import streamlit as st
-from sudoku_core import generate_puzzle
+
 from graph import run_sudoku_agent
+from sudoku_core import generate_puzzle
 
 st.set_page_config(page_title="Sudoku Agent", layout="centered")
 st.title("Sudoku Multi-Agent Solver")

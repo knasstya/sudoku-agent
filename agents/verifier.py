@@ -5,6 +5,7 @@ less reliable than plain code for no benefit. Knowing when NOT to
 use an LLM is part of what this project should demonstrate.
 """
 from sudoku_core import find_conflicts, is_valid_solution
+
 from .state import SudokuState
 
 

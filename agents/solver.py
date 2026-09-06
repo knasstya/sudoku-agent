@@ -6,10 +6,13 @@ progress -- guaranteeing the puzzle actually finishes.
 """
 import json
 import re
+
 from langchain_core.messages import HumanMessage, SystemMessage
+
+from sudoku_core import _is_valid_placement, _solve, find_naked_singles
+
 from .llm_client import get_llm
 from .state import SudokuState
-from sudoku_core import _is_valid_placement, find_naked_singles, _solve
 
 SYSTEM_PROMPT = """You are a Sudoku solver. Given a grid and a strategy hint,
 propose moves as a JSON array only, no other text. Each move:

@@ -4,9 +4,8 @@ No LLM involved here on purpose — agents should reason on TOP of
 ground-truth rules, not reinvent them. This file is the "data" layer.
 """
 import random
-from typing import List, Optional
 
-Grid = List[List[int]]  # 9x9, 0 = empty cell
+Grid = list[list[int]]  # 9x9, 0 = empty cell
 
 
 def _is_valid_placement(grid: Grid, row: int, col: int, num: int) -> bool:
@@ -96,7 +95,7 @@ def get_candidates(grid: Grid, row: int, col: int) -> set:
     return set(range(1, 10)) - used
 
 
-def find_naked_singles(grid: Grid) -> List[tuple]:
+def find_naked_singles(grid: Grid) -> list[tuple]:
     """Finds cells that have exactly ONE possible legal value — these
     can be filled with certainty by pure logic, no LLM reasoning needed.
     Returns a list of (row, col, value) tuples."""
@@ -109,7 +108,7 @@ def find_naked_singles(grid: Grid) -> List[tuple]:
     return singles
 
 
-def find_conflicts(grid: Grid) -> List[str]:
+def find_conflicts(grid: Grid) -> list[str]:
     """Returns human-readable list of rule violations. Empty list = valid.
     Used by the Verifier agent to give the Planner agent something
     specific to react to, instead of a plain pass/fail."""

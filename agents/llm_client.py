@@ -5,6 +5,7 @@ one-file change, not a find-and-replace across the codebase. This is
 a standard practice, not specific to this project.
 """
 import os
+
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 

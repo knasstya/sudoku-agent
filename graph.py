@@ -9,10 +9,12 @@ than a linear script: the graph itself decides whether to retry
 based on the verifier's output, not hardcoded application logic.
 """
 import time
-from langgraph.graph import StateGraph, END
-from agents.state import SudokuState
+
+from langgraph.graph import END, StateGraph
+
 from agents.planner import planner_node
 from agents.solver import solver_node
+from agents.state import SudokuState
 from agents.verifier import verifier_node
 
 

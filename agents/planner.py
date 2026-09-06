@@ -6,6 +6,7 @@ specifically to what went wrong, which is what makes the loop useful
 instead of just retrying blindly.
 """
 from langchain_core.messages import HumanMessage, SystemMessage
+
 from .llm_client import get_llm
 from .state import SudokuState
 
