@@ -67,9 +67,3 @@ streamlit run app.py
 ```bash
 pytest tests/test_sudoku_core.py -v
 ```
-
-## Roadmap / stretch goals
-
-- [ ] Deploy on Azure Functions / Container Apps
-- [ ] Add deploy step to GitHub Actions (test -> build -> deploy)
-- [ ] Swap Groq for local Ollama as a provider-agnostic demo
