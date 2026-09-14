@@ -1,49 +1,36 @@
 # Sudoku Multi-Agent Solver
 
-A multi-agent system that solves Sudoku puzzles through three
-LLM-orchestrated agents built with **LangGraph**, with a self-correcting
-retry loop and a deterministic rule layer underneath.
+A multi-agent system that solves Sudoku puzzles through LLM-orchestrated agents built with LangGraph, featuring a self-correcting retry loop and a deterministic rule-checking layer, with a Streamlit interface and automated tests.
 
-## Why this project
+## Features
 
-Built to demonstrate agentic pipeline design end-to-end: puzzle generation
-(ETL-equivalent) -> agent orchestration (LangGraph) -> LLM reasoning calls
-(Groq/Llama) -> tested, verifiable output -> deployable interface (Streamlit).
+- Multi-agent pipeline: Planner, Solver, and Verifier agents
+- Self-correcting retry loop when a proposed solution fails validation
+- Deterministic Verifier — rule-checking is pure logic, not an LLM call
+- Solver moves re-validated in code before being applied
+- Streamlit interface for interactive puzzle solving
+- Pytest test suite covering the deterministic solving logic
+- GitHub Actions CI — tests only the deterministic layer, so no API key is needed in CI
 
-## Architecture
+## Tech Stack
+
+**Agent orchestration:** LangGraph
+**LLM inference:** Groq API (Llama 3.3 70B, free tier)
+**Interface:** Streamlit
+**Testing / CI:** Pytest, GitHub Actions
+
+## Project Structure
 
 ```
-generate_puzzle()
-      |
-      v
-  [Planner] --analyzes grid, picks a strategy--
-      |
-      v
-  [Solver] --proposes moves, validated against rules before applying--
-      |
-      v
-  [Verifier] --checks Sudoku rules (no LLM call, pure logic)--
-      |
-      +--invalid, attempts left--> back to [Planner]
-      |
-      +--valid or out of attempts--> END
+agents/            # Planner, Solver, Verifier agent logic
+tests/              # Pytest test suite
+.github/workflows/  # CI pipeline
+app.py              # Streamlit app entry point
+graph.py            # LangGraph orchestration
+sudoku_core.py       # Deterministic Sudoku logic (generation, rule-checking)
+requirements.txt
+.env.example
 ```
-
-Design decisions worth noting:
-- **Verifier is not an LLM call.** Rule-checking is deterministic; using an
-  LLM there would add cost and unreliability for no benefit.
-- **Solver moves are re-validated in code**, never trusted blindly from the
-  LLM output. The model proposes, deterministic code disposes.
-- **CI tests only the deterministic layer** (`sudoku_core.py`), so the
-  pipeline never needs an API key as a GitHub secret and costs nothing to
-  run on every push.
-
-## Stack
-
-- LangGraph — agent orchestration / state graph
-- Groq API (Llama 3.3 70B) — free-tier LLM inference
-- Streamlit — interface
-- pytest + GitHub Actions — testing and CI
 
 ## Setup
 
@@ -51,10 +38,8 @@ Design decisions worth noting:
 python3 -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-cp .env.example .env            # then add your Groq key
+cp .env.example .env            # then add your Groq API key
 ```
-
-Get a free Groq API key at https://console.groq.com (no card required).
 
 ## Run
 
@@ -67,3 +52,7 @@ streamlit run app.py
 ```bash
 pytest tests/test_sudoku_core.py -v
 ```
+
+## Status
+
+Core multi-agent pipeline, deterministic verification, and CI are complete and tested. Deployment and provider-agnostic support (e.g. local LLMs) are potential next steps.
