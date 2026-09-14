@@ -1,8 +1,7 @@
 """
 Verifier agent: deliberately NOT an LLM call. Rule-checking is
-deterministic, so using an LLM here would be slower, costlier, and
-less reliable than plain code for no benefit. Knowing when NOT to
-use an LLM is part of what this project should demonstrate.
+deterministic, so using an LLM here would be slower, costlier and
+less reliable than plain code for no benefit.
 """
 from sudoku_core import find_conflicts, is_valid_solution
 
