@@ -1,7 +1,6 @@
 """
 Core Sudoku logic: generation and rule validation.
-No LLM involved here on purpose — agents should reason on TOP of
-ground-truth rules, not reinvent them. This file is the "data" layer.
+No LLM involved here on purpose.
 """
 import random
 
