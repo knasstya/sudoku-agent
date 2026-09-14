@@ -1,8 +1,3 @@
-"""
-Streamlit interface. Streamlit turns a Python script into a web UI
-without writing HTML/JS — standard choice for ML/AI portfolio demos
-because it's fast to build and free to host (Streamlit Community Cloud).
-"""
 import streamlit as st
 
 from graph import run_sudoku_agent
