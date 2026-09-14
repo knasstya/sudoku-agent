@@ -1,9 +1,3 @@
-"""
-Single place that constructs the LLM client. Keeping this separate
-means swapping providers (Groq -> OpenAI -> local Ollama) later is a
-one-file change, not a find-and-replace across the codebase. This is
-a standard practice, not specific to this project.
-"""
 import os
 
 from dotenv import load_dotenv
@@ -25,13 +19,12 @@ def get_llm():
 
         _llm = ChatGroq(
             model="openai/gpt-oss-20b",
-            temperature=0,  # deterministic reasoning, not creative writing
+            temperature=0,
             api_key=api_key,
-            timeout=30,  # fail loudly instead of hanging forever on a slow response
-            max_retries=1,  # low retry count so real errors surface fast, not hidden behind silent retries
-            reasoning_effort="low",  # gpt-oss models spend tokens on hidden "thinking" by default;
-            # low effort keeps enough reasoning for a simple task while leaving room for the actual answer
-            max_tokens=600,  # hard cap so one call can't eat the whole per-minute token budget
+            timeout=30, 
+            max_retries=1,  
+            reasoning_effort="low", 
+            max_tokens=600,  
         )
         
     return _llm
