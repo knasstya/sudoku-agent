@@ -1,9 +1,3 @@
-"""
-These tests cover sudoku_core.py only — the deterministic layer.
-Deliberately NOT calling the LLM here: unit tests should be fast,
-free, and deterministic. Agent behavior gets a separate integration
-test (test_graph.py) that's skipped in CI unless an API key is present.
-"""
 import os
 import sys
 
