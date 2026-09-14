@@ -2,8 +2,7 @@
 Planner agent: looks at the grid (and any conflicts from a previous
 failed attempt) and produces a short strategy instruction for the
 Solver. On the first pass this is generic; on retries it reacts
-specifically to what went wrong, which is what makes the loop useful
-instead of just retrying blindly.
+specifically to what went wrong.
 """
 from langchain_core.messages import HumanMessage, SystemMessage
 
