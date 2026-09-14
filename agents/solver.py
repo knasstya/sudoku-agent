@@ -1,8 +1,7 @@
 """
-Solver agent: fills cells via pure logic where possible (free, 100%
-reliable), asks the LLM only for genuinely ambiguous cells, and falls
+Solver agent: fills cells via pure logic where possible, asks the LLM only for genuinely ambiguous cells and falls
 back to a deterministic backtracking solver if the LLM can't make
-progress -- guaranteeing the puzzle actually finishes.
+progress, guaranteeing the puzzle actually finishes.
 """
 import json
 import re
