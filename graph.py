@@ -1,13 +1,3 @@
-"""
-Builds the LangGraph StateGraph: this is where nodes become edges.
-
-Flow:
-  planner -> solver -> verifier -> (loop back to planner) OR (end)
-
-The conditional edge is the part that makes this "agentic" rather
-than a linear script: the graph itself decides whether to retry
-based on the verifier's output, not hardcoded application logic.
-"""
 import time
 
 from langgraph.graph import END, StateGraph
