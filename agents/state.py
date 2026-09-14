@@ -1,11 +1,3 @@
-"""
-LangGraph passes a single shared 'state' object between every node.
-Each agent reads what it needs from state and returns a dict of the
-fields it wants to update — LangGraph merges that into the state
-before calling the next node. This is the core mental model of the
-whole framework: nodes are pure functions, state is the only channel
-between them.
-"""
 from typing import TypedDict
 
 
